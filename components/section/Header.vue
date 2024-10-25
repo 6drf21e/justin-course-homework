@@ -41,10 +41,10 @@
       </div>
 
       <div class="flex space-x-4">
-        <UiBaseButton type="nav_primary" @click="OpenWaitlist"
+        <UiBaseButton type="nav_primary" @click="openWaitlist"
           >预约试驾</UiBaseButton
         >
-        <UiBaseButton type="nav_secondary" @click="OpenWaitlist"
+        <UiBaseButton type="nav_secondary" @click="openWaitlist"
           >去APP购车</UiBaseButton
         >
       </div>
@@ -60,10 +60,6 @@
       default: false
     }
   })
-
-  const OpenWaitlist = () => {
-    window.open('https://forms.office.com/r/k4QEdzz23K', '_blank')
-  }
 </script>
 
 <style scoped></style>

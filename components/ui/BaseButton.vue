@@ -12,12 +12,8 @@
   const props = defineProps({
     type: {
       type: String,
-      default: 'primary' // primary 是实心白色, secondary 是空心白框, danger 是红色
+      default: 'primary' // primary 是实心白色, secondary 是空心白框, nav_primary 是白色边框, nav_secondary 是白色背景
     }
-    // label: {
-    //   type: String,
-    //   default: 'BaseButton'
-    // }
   })
 
   const computedClass = computed(() => {
