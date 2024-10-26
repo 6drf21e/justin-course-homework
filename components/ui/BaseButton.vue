@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-  import { computed, defineProps } from 'vue'
+  // import { computed, defineProps } from 'vue'
 
   const props = defineProps({
     type: {
