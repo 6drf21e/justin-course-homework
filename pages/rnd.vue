@@ -6,10 +6,26 @@
     <div class="p-4 bg-white mt-10 mx-auto">
       <div class="max-w-4xl mx-auto">
         <ClientOnly>
-          <ContentRenderer :value="doc">
+          <!-- 添加加载和错误状态的处理 -->
+          <div v-if="status === 'pending'" class="text-center py-10">
+            <UIcon
+              name="i-material-symbols:cycle"
+              class="animate-spin text-4xl text-gray-500"
+            />
+            <p class="mt-2 text-gray-600">正在加载内容...</p>
+          </div>
+          <div v-else-if="status === 'error'" class="text-center py-10">
+            <UIcon
+              name="i-material-symbols:error-outline"
+              class="text-4xl text-red-500"
+            />
+            <p class="mt-2 text-red-600">加载内容时出错，请稍后再试。</p>
+          </div>
+          <ContentRenderer v-else :value="doc">
             <!-- 添加刷新按钮 -->
             <UButton
               icon="i-material-symbols:cycle"
+              :loading="status === 'pending'"
               size="xl"
               color="orange"
               variant="solid"
@@ -54,7 +70,11 @@
   })
 
   // 随机获取一篇文章
-  const { data: doc, refresh } = await useAsyncData('doc_rnd', () => {
+  const {
+    data: doc,
+    refresh,
+    status
+  } = await useAsyncData('doc_rnd', () => {
     return queryContent()
       .where({ _path: path_regex })
       .skip(Math.floor(Math.random() * count.value))
