@@ -26,6 +26,9 @@
 
 <script setup>
   const { isScrolled } = useScroll()
+  definePageMeta({
+    layout: 'waitlist'
+  })
 </script>
 
 <style scoped>

@@ -7,7 +7,8 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@nuxtjs/tailwindcss',
     'nuxt-gtag',
-    '@nuxt/content'
+    '@nuxt/content',
+    '@nuxt/image'
   ],
   colorMode: {
     classSuffix: ''

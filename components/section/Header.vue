@@ -36,7 +36,8 @@
         <UiNavLink href="/">首页</UiNavLink>
         <UiNavLink href="/waitlist">waitlist</UiNavLink>
         <UiNavLink href="/news">新闻</UiNavLink>
-        <!-- <UiNavLink href="#">汽车工厂</UiNavLink>
+        <UiNavLink href="/rnd">趣闻</UiNavLink>
+        <!-- 
         <UiNavLink href="#">门店查询</UiNavLink>
         <UiNavLink href="#">服务介绍</UiNavLink> -->
       </div>
