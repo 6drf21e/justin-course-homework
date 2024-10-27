@@ -32,6 +32,9 @@
               :src="doc.image"
               placeholder="https://placehold.co/400"
             />
+            <template #empty>
+              <p class="text-center text-2xl mt-10">No content found.</p>
+            </template>
           </ContentRenderer>
         </ClientOnly>
       </div>
@@ -42,14 +45,21 @@
 <script setup>
   const { isScrolled } = useScroll()
 
-  const _path = 'history'
-  const count = await queryContent(_path).count()
+  // 随机获取文档的 content 目录
+  const content_path = 'history'
+  const path_regex = new RegExp(`^/${content_path}/`)
 
-  const rand_article = await queryContent(_path)
-    .skip(Math.floor(Math.random() * count))
-    .limit(1)
-    .find()
-  const doc = rand_article[0]
+  const { data: count } = await useAsyncData('doc_count', () => {
+    return queryContent(content_path).count()
+  })
+
+  // 随机获取一篇文章
+  const { data: doc, refresh } = await useAsyncData('doc_rnd', () => {
+    return queryContent()
+      .where({ _path: path_regex })
+      .skip(Math.floor(Math.random() * count.value))
+      .findOne()
+  })
 
   useSeoMeta({
     title: doc && doc.title ? `趣闻 - ${doc.title}` : '趣闻'
@@ -57,7 +67,8 @@
 
   // 添加刷新页面的函数
   function refreshPage() {
-    window.location.reload()
+    refresh()
+    // window.location.reload()
   }
 </script>
 
