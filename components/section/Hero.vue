@@ -7,7 +7,9 @@
       <h1 class="mb-4 text-6xl font-bold text-white">{{ title }}</h1>
       <p class="mb-8 text-2xl text-white">{{ subtitle }}</p>
     </div>
-    <div class="mb-10 flex justify-center space-x-4">
+    <div
+      class="mb-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:space-x-4"
+    >
       <slot />
     </div>
   </div>

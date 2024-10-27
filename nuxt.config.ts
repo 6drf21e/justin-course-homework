@@ -16,5 +16,6 @@ export default defineNuxtConfig({
   },
   gtag: {
     id: process.env.GTAG_ID || 'G-XXXXXXXXXX'
-  }
+  },
+  css: ['@/assets/styles/main.css']
 })

@@ -2,7 +2,7 @@
   <nav
     id="navbar"
     :class="[
-      'fixed left-0 right-0 top-0 transition-colors duration-300',
+      'fixed left-0 right-0 top-0 transition-colors duration-300 z-50',
       isScrolled
         ? 'bg-gray-800 bg-opacity-90'
         : 'bg-transparent hover:bg-gray-800 hover:bg-opacity-90'
@@ -32,17 +32,34 @@
         <span class="text-xl font-light text-gray-50">大米汽车</span>
       </div>
 
-      <div class="hidden space-x-16 md:flex">
+      <!-- 汉堡菜单按钮 -->
+      <button @click="toggleMenu" class="md:hidden text-white">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16m-7 6h7"
+          />
+        </svg>
+      </button>
+
+      <!-- 导航链接 -->
+      <div class="hidden md:flex md:space-x-16">
         <UiNavLink href="/">首页</UiNavLink>
         <UiNavLink href="/waitlist">waitlist</UiNavLink>
         <UiNavLink href="/news">新闻</UiNavLink>
         <UiNavLink href="/rnd">趣闻</UiNavLink>
-        <!-- 
-        <UiNavLink href="#">门店查询</UiNavLink>
-        <UiNavLink href="#">服务介绍</UiNavLink> -->
       </div>
 
-      <div class="flex space-x-4">
+      <!-- 按钮 -->
+      <div class="hidden md:flex space-x-4">
         <UiBaseButton type="nav_primary" @click="openWaitlist"
           >预约试驾</UiBaseButton
         >
@@ -51,10 +68,33 @@
         >
       </div>
     </div>
+
+    <!-- 移动端菜单 -->
+    <div v-if="isMenuOpen" class="md:hidden bg-gray-800 bg-opacity-90">
+      <div class="px-2 pt-2 pb-3 space-y-2 h-screen text-center">
+        <UiNavLink href="/" class="block">首页</UiNavLink>
+        <div class="w-full h-px bg-gray-600"></div>
+        <UiNavLink href="/waitlist" class="block">waitlist</UiNavLink>
+        <div class="w-full h-px bg-gray-600"></div>
+        <UiNavLink href="/news" class="block">新闻</UiNavLink>
+        <div class="w-full h-px bg-gray-600"></div>
+        <UiNavLink href="/rnd" class="block">趣闻</UiNavLink>
+      </div>
+      <!-- <div class="px-2 pt-2 pb-3 space-y-1">
+        <UiBaseButton type="nav_primary" @click="openWaitlist" class="w-full"
+          >预约试驾</UiBaseButton
+        >
+        <UiBaseButton type="nav_secondary" @click="openWaitlist" class="w-full"
+          >去APP购车</UiBaseButton
+        >
+      </div> -->
+    </div>
   </nav>
 </template>
 
 <script setup>
+  import { ref } from 'vue'
+
   // 接收父组件传入的滚动状态
   defineProps({
     isScrolled: {
@@ -62,6 +102,23 @@
       default: true
     }
   })
+
+  // 控制菜单开关状态
+  const isMenuOpen = ref(false)
+
+  // 切换菜单状态
+  const toggleMenu = () => {
+    isMenuOpen.value = !isMenuOpen.value
+    // 当菜单打开时添加 no-scroll 类，关闭时移除
+    document.body.classList.toggle('no-scroll', isMenuOpen.value)
+  }
+
+  onUnmounted(() => {
+    // 确保组件卸载时移除 no-scroll 类
+    document.body.classList.remove('no-scroll')
+  })
 </script>
 
-<style scoped></style>
+<style scoped>
+  /* 可以在这里添加任何特定的样式 */
+</style>

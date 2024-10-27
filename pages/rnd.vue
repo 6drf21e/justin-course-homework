@@ -6,6 +6,21 @@
     <div class="p-4 bg-white mt-10 mx-auto">
       <div class="max-w-4xl mx-auto">
         <ClientOnly>
+          <!-- 添加刷新按钮 -->
+          <UButton
+            icon="i-material-symbols:cycle"
+            :loading="status === 'pending'"
+            size="xl"
+            color="orange"
+            variant="solid"
+            label="Button"
+            :ui="{ rounded: 'rounded-full' }"
+            :trailing="false"
+            class="mt-4 mb-4 py-2 px-4 ml-0"
+            @click="refreshPage"
+          >
+            换一换
+          </UButton>
           <!-- 添加加载和错误状态的处理 -->
           <div v-if="status === 'pending'" class="text-center py-10">
             <UIcon
@@ -22,22 +37,6 @@
             <p class="mt-2 text-red-600">加载内容时出错，请稍后再试。</p>
           </div>
           <ContentRenderer v-else :value="doc">
-            <!-- 添加刷新按钮 -->
-            <UButton
-              icon="i-material-symbols:cycle"
-              :loading="status === 'pending'"
-              size="xl"
-              color="orange"
-              variant="solid"
-              label="Button"
-              :ui="{ rounded: 'rounded-full' }"
-              :trailing="false"
-              class="mt-4 mb-4 py-2 px-4 ml-0"
-              @click="refreshPage"
-            >
-              换一换
-            </UButton>
-
             <ContentRendererMarkdown
               :value="doc"
               class="prose lg:prose-2xl prose-img:mx-auto prose-h1:text-3xl mt-2 mx-auto"
