@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-b">
+  <div>
     <SectionHeader :is-scrolled="isShowHeader" v-if="!isScrolled" />
     <slot />
   </div>

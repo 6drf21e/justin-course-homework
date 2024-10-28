@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     '@nuxt/image'
   ],
   colorMode: {
+    preference: 'light',
     classSuffix: ''
   },
   gtag: {
