@@ -5,16 +5,16 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '@nuxt/ui',
-    '@nuxtjs/color-mode',
+    // '@nuxtjs/color-mode',
     '@nuxtjs/tailwindcss',
     'nuxt-gtag',
     '@nuxt/content',
     '@nuxt/image'
   ],
-  colorMode: {
-    preference: 'light',
-    classSuffix: ''
-  },
+  // colorMode: {
+  //   preference: 'light',
+  //   classSuffix: ''
+  // },
   gtag: {
     id: process.env.GTAG_ID || 'G-XXXXXXXXXX'
   },

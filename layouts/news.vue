@@ -6,6 +6,6 @@
 </template>
 
 <script setup>
-  const { isScrolled } = useScroll(40)
+  const { isScrolled } = useScroll(36)
   const isShowHeader = ref(true)
 </script>

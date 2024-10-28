@@ -1,5 +1,5 @@
 <template>
-  <div class="p-0 bg-white mt-20 mx-auto">
+  <div class="lg:p-0 bg-white mt-20 mx-auto p-4">
     <div class="max-w-4xl mx-auto">
       <!-- 面包屑导航 -->
       <UBreadcrumb
