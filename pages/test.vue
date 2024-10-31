@@ -1,8 +1,30 @@
 <template>
   <div class="test-container">
     <ClientOnly>
-      <ScrollingList :list1="testData1" :list2="testData2" />
+      <ScrollingList
+        :list1="testData1"
+        :list2="testData2"
+        @content-updated="handleContentUpdate"
+      />
     </ClientOnly>
+
+    <!-- 添加按钮和数据显示区域 -->
+    <div class="data-display-section">
+      <button class="show-data-btn" @click="toggleShowData">
+        {{ showData ? '隐藏数据' : '显示修改后的数据' }}
+      </button>
+
+      <div v-if="showData" class="data-content">
+        <div class="data-column">
+          <h3>列表1数据：</h3>
+          <pre>{{ JSON.stringify(testData1, null, 2) }}</pre>
+        </div>
+        <div class="data-column">
+          <h3>列表2数据：</h3>
+          <pre>{{ JSON.stringify(testData2, null, 2) }}</pre>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -12,6 +34,14 @@
   definePageMeta({
     layout: 'default'
   })
+
+  // 添加控制数据显示的响应式变量
+  const showData = ref(false)
+
+  // 切换数据显示状态
+  const toggleShowData = () => {
+    showData.value = !showData.value
+  }
 
   // 生成测试数据
   const testData1 = Array.from({ length: 20 }, (_, i) => {
@@ -59,6 +89,14 @@ This is a longer translated text for testing scroll synchronization.
 
 This contains the detailed content of article ${i + 1}.`
   }))
+
+  const handleContentUpdate = ({ index, field, value, listId }) => {
+    if (listId === 'list1') {
+      testData1[index][field] = value
+    } else {
+      testData2[index][field] = value
+    }
+  }
 </script>
 
 <style scoped>
@@ -66,5 +104,60 @@ This contains the detailed content of article ${i + 1}.`
     padding: 20px;
     max-width: 1400px;
     margin: 0 auto;
+  }
+
+  .data-display-section {
+    margin-top: 20px;
+    padding: 20px;
+  }
+
+  .show-data-btn {
+    padding: 10px 20px;
+    background-color: #4a9eff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s;
+  }
+
+  .show-data-btn:hover {
+    background-color: #357abd;
+  }
+
+  .data-content {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+  }
+
+  .data-column {
+    flex: 1;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    overflow: auto;
+  }
+
+  .data-column h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #2c3e50;
+  }
+
+  .data-column pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #4a5568;
+  }
+
+  @media (max-width: 768px) {
+    .data-content {
+      flex-direction: column;
+    }
   }
 </style>

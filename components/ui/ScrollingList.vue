@@ -7,6 +7,7 @@
         ref="list1Ref"
         @scroll="handleScroll"
         @heights-updated="updateHeights"
+        @content-updated="handleContentUpdate"
       />
       <List
         :listData="list2"
@@ -14,6 +15,7 @@
         ref="list2Ref"
         @scroll="handleScroll"
         @heights-updated="updateHeights"
+        @content-updated="handleContentUpdate"
       />
     </div>
   </div>
@@ -35,6 +37,8 @@
       default: () => []
     }
   })
+
+  const emit = defineEmits(['content-updated'])
 
   const list1Ref = ref(null)
   const list2Ref = ref(null)
@@ -134,6 +138,11 @@
         targetRef.value.listContainer.scrollTop = targetScrollTop
       }
     })
+  }
+
+  // 添加内容更新处理函数
+  const handleContentUpdate = (updateInfo) => {
+    emit('content-updated', updateInfo)
   }
 
   // 生命周期钩子
