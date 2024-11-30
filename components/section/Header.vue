@@ -56,6 +56,7 @@
         <UiNavLink href="/waitlist">waitlist</UiNavLink>
         <UiNavLink href="/news">新闻</UiNavLink>
         <UiNavLink href="/rnd">趣闻</UiNavLink>
+        <UiNavLink href="/faq">FAQ</UiNavLink>
       </div>
 
       <!-- 按钮 -->
@@ -79,6 +80,8 @@
         <UiNavLink href="/news" class="block">新闻</UiNavLink>
         <div class="w-full h-px bg-gray-600"></div>
         <UiNavLink href="/rnd" class="block">趣闻</UiNavLink>
+        <div class="w-full h-px bg-gray-600"></div>
+        <UiNavLink href="/faq" class="block">FAQ</UiNavLink>
       </div>
       <!-- <div class="px-2 pt-2 pb-3 space-y-1">
         <UiBaseButton type="nav_primary" @click="openWaitlist" class="w-full"
