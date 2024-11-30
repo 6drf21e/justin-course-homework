@@ -17,6 +17,7 @@
     "nuxt": "^3.13.0",
     "nuxt-gtag": "^3.0.1",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "vue3-markdown-it": "^1.0.10"
   }
 }
