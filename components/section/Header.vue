@@ -53,7 +53,8 @@
       <!-- 导航链接 -->
       <div class="hidden md:flex md:space-x-16">
         <UiNavLink href="/">首页</UiNavLink>
-        <UiNavLink href="/waitlist">waitlist</UiNavLink>
+        <UiNavLink href="/pricing">车型</UiNavLink>
+        <!-- <UiNavLink href="/waitlist">waitlist</UiNavLink> -->
         <UiNavLink href="/news">新闻</UiNavLink>
         <UiNavLink href="/rnd">趣闻</UiNavLink>
         <UiNavLink href="/faq">FAQ</UiNavLink>
@@ -75,7 +76,9 @@
       <div class="px-2 pt-2 pb-3 space-y-2 h-screen text-center">
         <UiNavLink href="/" class="block">首页</UiNavLink>
         <div class="w-full h-px bg-gray-600"></div>
-        <UiNavLink href="/waitlist" class="block">waitlist</UiNavLink>
+        <UiNavLink href="/pricing" class="block">车型</UiNavLink>
+        <!-- <div class="w-full h-px bg-gray-600"></div>
+        <UiNavLink href="/waitlist" class="block">waitlist</UiNavLink> -->
         <div class="w-full h-px bg-gray-600"></div>
         <UiNavLink href="/news" class="block">新闻</UiNavLink>
         <div class="w-full h-px bg-gray-600"></div>
